@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深蓝水族馆</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zcool+KuaiLe&display=swap');
+      
+      body {
+        font-family: 'Zcool KuaiLe', cursive, sans-serif;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0ea5e9; 
+        border-radius: 4px;
+      }
+
+      /* --- Organic Swim Animations --- */
+      
+      /* Body gently rotates and translates to simulate water displacement */
+      @keyframes fish-body-swim {
+        0% { transform: rotate(0deg) translateY(0); }
+        25% { transform: rotate(3deg) translateY(1px); }
+        50% { transform: rotate(0deg) translateY(0); }
+        75% { transform: rotate(-3deg) translateY(-1px); }
+        100% { transform: rotate(0deg) translateY(0); }
+      }
+      
+      /* Tail moves with higher amplitude */
+      @keyframes fish-tail-swim {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(25deg); }
+        50% { transform: rotate(0deg); }
+        75% { transform: rotate(-25deg); }
+        100% { transform: rotate(0deg); }
+      }
+
+      /* Fins flutter to maintain stability */
+      @keyframes fish-fin-swim {
+        0% { transform: rotate(0deg) scale(1); }
+        30% { transform: rotate(-25deg) scale(0.9); }
+        60% { transform: rotate(5deg) scale(1.05); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      /* Floating decorations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      .animate-fish-body {
+        animation: fish-body-swim cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        transform-origin: center;
+        will-change: transform;
+      }
+
+      .animate-fish-tail {
+        animation: fish-tail-swim cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        will-change: transform;
+        /* Transform origin is set inline in React based on body type */
+      }
+      
+      .animate-fish-fin {
+        animation: fish-fin-swim ease-in-out infinite;
+        transform-origin: 0% 0%; /* Top-left of the fin */
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'deep-blue': '#0b1026',
+              'ocean-light': '#1e293b',
+              'gold-accent': '#facc15',
+              'danger': '#ef4444',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-deep-blue text-white overflow-hidden select-none">
+    <div id="root"></div>
+  </body>
+</html>
